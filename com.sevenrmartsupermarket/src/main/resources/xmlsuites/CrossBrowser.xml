@@ -1,0 +1,27 @@
+<suite name="release run" thread-count="3" parallel="methods">
+	<listeners>
+		<listener
+			class-name="com.sevenrmartsupermarket.listeners.ExtentReporter"></listener>
+	</listeners>
+	<test name="ChromeBrowser">
+		<parameter name="browser" value="Chrome"></parameter>
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+		</classes>
+
+	</test>
+	<test name="FriefoxBrowser">
+		<parameter name="browser" value="Firefox"></parameter>
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+		</classes>
+
+	</test>
+	<test name="EdgeBrowser">
+		<parameter name="browser" value="Edge"></parameter>
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.AdminUserTest"></class>
+		</classes>
+	</test>
+
+</suite>

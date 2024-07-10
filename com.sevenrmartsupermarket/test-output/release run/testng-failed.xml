@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" parallel="methods" name="Failed suite [release run]">
+  <listeners>
+    <listener class-name="com.sevenrmartsupermarket.listeners.ExtentReporter"/>
+  </listeners>
+  <test thread-count="1" parallel="methods" name="FriefoxBrowser(failed)">
+    <parameter name="browser" value="Firefox"/>
+    <classes>
+      <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="launchBrowser"/>
+          <include name="terminateBrowser"/>
+          <include name="deleteSelectedUser"/>
+          <include name="createAdminUser"/>
+          <include name="resetAdminUserDetails"/>
+          <include name="searchAdminUser"/>
+        </methods>
+      </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
+    </classes>
+  </test> <!-- FriefoxBrowser(failed) -->
+</suite> <!-- Failed suite [release run] -->

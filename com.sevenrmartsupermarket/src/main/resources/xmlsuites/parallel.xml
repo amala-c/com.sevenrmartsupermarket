@@ -1,0 +1,21 @@
+<suite name="release run" thread-count="2" parallel="tests">
+	
+	<listeners>
+    <listener class-name="com.sevenrmartsupermarket.listeners.ExtentReporter"></listener>
+  </listeners>
+	
+	<test name="regression">
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.LoginTest"></class>
+			<class name="com.sevenrmartsupermarket.tests.AdminUserTest">
+			</class>
+		</classes>
+	</test>
+
+	<test name="smoke testing">
+		<classes>
+			<class name="com.sevenrmartsupermarket.tests.LoginTest">
+			</class>
+		</classes>
+	</test>
+</suite>
