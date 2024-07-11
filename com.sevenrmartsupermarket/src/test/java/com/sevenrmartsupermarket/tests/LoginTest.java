@@ -22,7 +22,6 @@ public class LoginTest extends Base {
 
 		loginpage = new LoginPage(driver);
 		dashBoardPage = new DashBoardPage(driver);
-		// param are properties files values
 		loginpage.login(username, password);
 		String actualProfileName = "amala";
 		Assert.assertEquals(actualProfileName, profileName);
