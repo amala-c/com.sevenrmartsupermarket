@@ -2,41 +2,40 @@ package com.sevenrmartsupermarket.tests;
 
 import org.jsoup.select.Evaluator.ContainsOwnText;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.sevenrmartsupermarket.base.Base;
+import com.sevenrmartsupermarket.dataproviders.Dataproviders;
+import com.sevenrmartsupermarket.listeners.RetryAnalyzer;
 import com.sevenrmartsupermarket.pages.DashBoardPage;
 import com.sevenrmartsupermarket.pages.LoginPage;
 import com.sevenrmartsupermarket.utilities.ExcelReader;
 import com.sevenrmartsupermarket.utilities.ScreenshotCapture;
-
 public class LoginTest extends Base {
 	LoginPage loginpage;
 	DashBoardPage dashBoardPage;
 	ExcelReader excelreader=new ExcelReader();
-	@Test(groups = {"regression","smoke"})
-	public void verifyLogin() {
+	@Test(dataProvider = "valid login", dataProviderClass = Dataproviders.class )
+	//(groups = {"regression","smoke"})
+	public void verifyLogin(String username,String password , String profileName) {
 
 		loginpage = new LoginPage(driver);
 		dashBoardPage = new DashBoardPage(driver);
 		// param are properties files values
-		loginpage.login();
-
-		loginpage.login("annamol", "12434");
-		String expectedProfileName = dashBoardPage.getProfileName();
-		// System.out.println(expectedProfileName);
-		String actualProfileName = "Annamol";
-		Assert.assertEquals(actualProfileName, expectedProfileName);
+		loginpage.login(username, password);
+		String actualProfileName = "amala";
+		Assert.assertEquals(actualProfileName, profileName);
 
 
 	}
 	
-	@Test(groups="smoke") 
+	@Test(retryAnalyzer = RetryAnalyzer.class) 
 	public void verifyInvalidLogin() {
 
 		/** invalid credentials */
 		loginpage=new LoginPage(driver);
-		loginpage.login("amala", "12434");
+		loginpage.login("amala", "amala");
 		String actualAlertMessage = loginpage.invalidLogin();
 		System.out.println(actualAlertMessage);
 		String expectedAlertMessage ="Alert!";

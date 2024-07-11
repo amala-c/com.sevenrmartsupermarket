@@ -21,33 +21,33 @@ public class AdminUserPage {
 
 	/** WebElements **/
 	@FindBy(xpath = " //a[contains(text(),'New')]")
-	WebElement newUser;
+	private WebElement newUser;
 	@FindBy(xpath = "//input[@id='username']")
-	WebElement userName;
+	private WebElement userName;
 	@FindBy(xpath = "//input[@id='password']")
-	WebElement password;
+	private WebElement password;
 	@FindBy(xpath = "//select[@id='user_type']")
-	WebElement userTypedropdown;
+	private WebElement userTypedropdown;
 	@FindBy(xpath = "(//button[@class='btn btn-block-sm btn-danger'])[2]")
-	WebElement saveButton;
+	private WebElement saveButton;
 	@FindBy(xpath = "(//a[contains(text(),'Reset')])[3]")
-	WebElement resetButton;
+	private WebElement resetButton;
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
-	WebElement alertMessage;
+	private WebElement alertMessage;
 	@FindBy(xpath = "//a[contains(text(),' Search')]")
-	WebElement searchButton;
+	private WebElement searchButton;
 	@FindBy(xpath = "//input[@id=\"un\"]")
-	WebElement searchUserName;
+	private WebElement searchUserName;
 	@FindBy(xpath = "//select[@id='ut']")
-	WebElement searchUserTypeDropDown;
+	private WebElement searchUserTypeDropDown;
 	@FindBy(xpath = "//button[@name='Search']")
-	WebElement searchUsersButton;
+	private WebElement searchUsersButton;
 	@FindBy(xpath="//table//tbody//tr//td[1]")
-	WebElement searchTableRow;
+	private WebElement searchTableRow;
 	@FindBy(xpath ="//h1[@class='m-0 text-dark']")
-	WebElement pageHeading;
+	private WebElement pageHeading;
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
-	List<WebElement> tableNames;
+	private List<WebElement> tableNames;
 
 	PageUtility pageutility = new PageUtility(driver);
 	GeneralUtility generalutility=new GeneralUtility();
