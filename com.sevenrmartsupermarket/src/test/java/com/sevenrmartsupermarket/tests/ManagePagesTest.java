@@ -49,7 +49,6 @@ public class ManagePagesTest extends Base {
 		loginpage.login();
 		dashBoardPage.navigateToCard("Manage Pages");
 		managepagespages.createNewPage(newText,newPage,newDescription);
-		// Navigate back to the previous page
         driver.navigate().back();
 		boolean actualAlertText=managepagespages.checkNewpageSucessByAlert("Page Created Successfully");
 		assertTrue(actualAlertText);
