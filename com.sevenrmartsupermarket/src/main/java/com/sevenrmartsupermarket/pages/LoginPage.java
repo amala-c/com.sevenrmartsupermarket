@@ -15,14 +15,14 @@ public class LoginPage {
 
 	/** object declaration **/
 	@FindBy(xpath = "//input[@name='username']")
-	WebElement userNameField;
+	private WebElement userNameField;
 	@FindBy(xpath = "//input[@name='password']")
-	WebElement passwordField;
+	private WebElement passwordField;
 	@FindBy(xpath = "//button[contains(text(),'Sign In')]")
-	WebElement signInButton;
+	private WebElement signInButton;
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-	WebElement alertMessage;
-
+	private WebElement alertMessage;
+  
 	Properties properties = new Properties();
 
 	/** constructor **/
@@ -69,10 +69,10 @@ public class LoginPage {
 		return alertMessage.getText();
 	}
 
-
 	/** invalid credentials **/
 	public String invalidLogin() {
 		return alertMessage.getText();
 	}
 
+	
 }

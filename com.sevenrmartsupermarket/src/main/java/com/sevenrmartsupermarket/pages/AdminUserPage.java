@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.sevenrmartsupermarket.constants.constants;
 import com.sevenrmartsupermarket.utilities.GeneralUtility;
 import com.sevenrmartsupermarket.utilities.PageUtility;
+import com.sevenrmartsupermarket.utilities.WaitUtility;
 
 public class AdminUserPage {
 	WebDriver driver;
@@ -48,11 +51,16 @@ public class AdminUserPage {
 	private WebElement pageHeading;
 	@FindBy(xpath = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]")
 	private List<WebElement> tableNames;
-
+	@FindBy(xpath="//div[@class='card-footer clearfix']//ul//li//a//span[contains(text(),'Next')]")
+	private WebElement nextButton;
+	
 	PageUtility pageutility = new PageUtility(driver);
 	GeneralUtility generalutility=new GeneralUtility();
+	WaitUtility waitutility;
+	JavascriptExecutor js;
 	public AdminUserPage(WebDriver driver) {
 		this.driver = driver;
+		this.js=(JavascriptExecutor) driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -96,6 +104,8 @@ public class AdminUserPage {
 	}
 
 	public void clickOnSearchButton() {
+		waitutility=new WaitUtility(driver);
+		waitutility.waitForElementToBeClickable(searchButton, 30);
 		searchButton.click();
 	}
 
@@ -146,7 +156,12 @@ public class AdminUserPage {
 	public String getPagetagName()
 	{
 		return pageHeading.getText();
-		
-		
+	}
+	
+	public void navigateToNextPages() throws InterruptedException
+	{	
+		js.executeScript("arguments[0].scrollIntoView();", nextButton);
+		Thread.sleep(5000);
+		nextButton.click();
 	}
 }

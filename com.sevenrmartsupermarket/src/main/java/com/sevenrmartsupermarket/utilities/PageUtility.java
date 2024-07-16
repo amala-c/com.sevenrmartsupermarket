@@ -49,9 +49,8 @@ public class PageUtility {
 		int index = 0;
 		while (!isClicked(element)) {
 			js.executeScript("window.scrollBy(0," + index + ")");
-			index = index + 3;
+			index = index + 100;
 		}
-
 	}
 
 	public boolean isClicked(WebElement element) {
@@ -61,7 +60,6 @@ public class PageUtility {
 		} catch (Exception e) {
 			return false;
 		}
-
 	}
 
 	/** jsclick **/

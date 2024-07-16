@@ -2,6 +2,7 @@ package com.sevenrmartsupermarket.tests;
 
 import static org.testng.Assert.assertTrue;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenrmartsupermarket.base.Base;
@@ -12,6 +13,8 @@ import com.sevenrmartsupermarket.pages.LoginPage;
 import com.sevenrmartsupermarket.pages.ManagePagesPage;
 import com.sevenrmartsupermarket.utilities.ExcelReader;
 
+
+
 public class ManagePagesTest extends Base {
 	LoginPage loginpage;
 	DashBoardPage dashBoardPage;
@@ -19,13 +22,6 @@ public class ManagePagesTest extends Base {
 	ManagePagesPage managepagespages;
 	ExcelReader excelreader=new ExcelReader();
 	
-	@Test
-	public void navigate() {
-		loginpage=new LoginPage(driver);
-		dashBoardPage=new DashBoardPage(driver);
-		loginpage.login();
-		dashBoardPage.navigateToCard("Manage Pages");
-	}
 	
 	@Test
 	public void searchTitle()
@@ -37,11 +33,11 @@ public class ManagePagesTest extends Base {
 		dashBoardPage.navigateToCard("Manage Pages");
 		managepagespages.searchEnteredPage("SampleTEstData");
 		boolean actualText=managepagespages.checkSucessByText("Search List Pages");
-		assertTrue(actualText);
+		Assert.assertTrue(actualText);
 	}
 	
 	@Test(dataProvider = "New page", dataProviderClass = Dataproviders.class)
-	public void newPage(String newText, String newPage, String newDescription)
+	public void newPage(String newText, String newPage, String newDescription) throws InterruptedException
 	{
 		loginpage=new LoginPage(driver);
 		dashBoardPage=new DashBoardPage(driver);
@@ -52,8 +48,19 @@ public class ManagePagesTest extends Base {
 		//navigate back
         driver.navigate().back();
 		boolean actualAlertText=managepagespages.checkNewpageSucessByAlert("Page Created Successfully");
-		assertTrue(actualAlertText);
-		
+		Assert.assertTrue(actualAlertText);	
 	}
 	
+	@Test 
+	public void deletePage()
+	{
+		loginpage=new LoginPage(driver);
+		dashBoardPage=new DashBoardPage(driver);
+		managepagespages=new ManagePagesPage(driver);
+		loginpage.login();
+		dashBoardPage.navigateToCard("Manage Pages");
+		managepagespages.deleteAPage("Amala Page1");
+		boolean actualDeleteAlertText=managepagespages.checkDeletepageSucessByAlert("Page Deleted Successfully");
+		Assert.assertTrue(actualDeleteAlertText);	
+	}
 }

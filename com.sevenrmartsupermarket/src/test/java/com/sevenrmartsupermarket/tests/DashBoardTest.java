@@ -1,5 +1,6 @@
 package com.sevenrmartsupermarket.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.sevenrmartsupermarket.base.Base;
@@ -14,7 +15,13 @@ public class DashBoardTest extends Base{
 	@Test
 	public void verifyText()
 	{
-		
+		loginpage = new LoginPage(driver);
+		dashBoardPage = new DashBoardPage(driver);
+		loginpage.login();
+		String actualProfileName=dashBoardPage.getProfileName();
+		System.out.println(actualProfileName);
+		String expectedProfileName="Admin";
+		Assert.assertEquals(expectedProfileName, actualProfileName);
 	}
 	
 	@Test(groups = "regression")
@@ -24,6 +31,18 @@ public class DashBoardTest extends Base{
 		dashBoardPage = new DashBoardPage(driver);
 		loginpage.login();
 		dashBoardPage.navigateToCard("Admin Users");
+		String expectedText="Admin Users";
+		String actualText=dashBoardPage.checkSucessNavigation();
+		Assert.assertTrue(actualText.contains(expectedText));
 	}
 
+	@Test
+	public void navigateToManageContentPage()
+	{
+		loginpage = new LoginPage(driver);
+		dashBoardPage = new DashBoardPage(driver);
+		loginpage.login();
+		dashBoardPage.navigateToManageContent();
+		
+	}
 }

@@ -81,4 +81,13 @@ public class AdminUserTest extends Base {
 		Assert.assertTrue(actualAlertMessage.contains(expectedAlertMessage));
 		
 	}
+	@Test
+	public void navigateToNextpage() throws InterruptedException
+	{
+		loginpage = new LoginPage(driver);
+		dashBoardPage = new DashBoardPage(driver);
+		loginpage.login();
+		dashBoardPage.navigateToCard("Admin Users");
+		adminuserpage.navigateToNextPages();
+	}
 }
